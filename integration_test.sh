@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Please, be sure you have defined AUTH_HOST_URL, AUTH_USERNAME and AUTH_PASSWORD properly for the correct environment"
+echo
 
 getAccessToken() {
   authTokenUrl="$1/api/consultants/tokens"
@@ -9,7 +10,7 @@ getAccessToken() {
   grantType="password"
 
   authTokenResponse=$(
-    curl --request POST --url $authTokenUrl \
+    curl --silent --request POST --url $authTokenUrl \
     --header 'Accept: application/json' \
     --header 'Content-Type: application/json' \
     -d '{"username": "'"$userName"'", "password": "'"$password"'", "grant_type": "'"$grantType"'"}'
