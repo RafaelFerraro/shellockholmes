@@ -8,7 +8,12 @@ getAccessToken() {
   password=$3
   grantType="password"
 
-  authTokenResponse=$( curl --request POST --url $authTokenUrl --header 'Accept: application/json' --header 'Content-Type: application/json' -d '{"username": "'"$userName"'", "password": "'"$password"'", "grant_type": "'"$grantType"'"}')
+  authTokenResponse=$(
+    curl --request POST --url $authTokenUrl \
+    --header 'Accept: application/json' \
+    --header 'Content-Type: application/json' \
+    -d '{"username": "'"$userName"'", "password": "'"$password"'", "grant_type": "'"$grantType"'"}'
+  )
 
   accessToken=$( echo $authTokenResponse | jq -r '.access_token' )
 
